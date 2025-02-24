@@ -1,5 +1,6 @@
 // 初始化页面
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("9999");
     initParallax();
     initAIChat();
     const carousel = new HologramCarousel();
