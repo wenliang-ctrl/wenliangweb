@@ -422,7 +422,9 @@ function initModal() {
             
 
             // 显示弹窗
+            console.log("1111");
             modalOverlay.classList.remove('hidden');
+            console.log("2222");
             modalOverlay.classList.add('visible');
         });
     });
