@@ -443,9 +443,9 @@ function initModal() {
 // 获取项目图片（本地路径）
 function getProjectImages(index) {
     const projects = [
-        ['/Users/wenliang/Desktop/Portfolio/image/1740128363121.jpg'], // 项目名称01
-        ['/Users/wenliang/Desktop/Portfolio/image/1740129056259.jpg'], // 项目名称02
-        ['/Users/wenliang/Desktop/Portfolio/image/1740129098055.jpg']  // 项目名称03
+        ['image/1740128363121.jpg'], // 改为相对路径
+        ['image/1740129056259.jpg'],
+        ['image/1740129098055.jpg']
     ];
     return projects[index] || [];
 }
