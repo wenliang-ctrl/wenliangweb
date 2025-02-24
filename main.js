@@ -449,9 +449,9 @@ function initModal() {
 // 获取项目图片（本地路径）
 function getProjectImages(index) {
     const projects = [
-        ['/image/1740128363121.jpg'], // 保持绝对路径
-        ['/image/1740129056259.jpg'],
-        ['/image/1740129098055.jpg']
+        ['image/1740128363121.jpg'], // 保持绝对路径
+        ['image/1740129056259.jpg'],
+        ['image/1740129098055.jpg']
     ];
 
     return projects[index] || [];
