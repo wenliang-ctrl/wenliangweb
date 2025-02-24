@@ -417,6 +417,7 @@ function initModal() {
                 const img = document.createElement('img');
                 img.src = src;
                 modalImages.appendChild(img);
+                console.log("地址为：==》"+src);
             });
 
             // 显示弹窗
