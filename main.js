@@ -407,7 +407,9 @@ function initModal() {
 
     // 打开弹窗
     viewDetailsBtns.forEach((btn, index) => {
+        console.log("111111");
         btn.addEventListener('click', () => {
+            console.log("22222");
             // 清空之前的图片
             modalImages.innerHTML = '';
 
