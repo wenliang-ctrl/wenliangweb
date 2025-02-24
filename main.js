@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMouseFollow();
     initScrollToTop();
     initModal();
+    createStars();
 });
 
 // 视差滚动效果
@@ -69,27 +70,26 @@ class ParticleSystem {
     }
 
     init() {
-        this.resizeCanvas();
-        window.addEventListener('resize', () => this.resizeCanvas());
+        this.resize();
+        window.addEventListener('resize', () => this.resize());
         this.createParticles();
         this.animate();
     }
 
-    resizeCanvas() {
+    resize() {
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
     }
 
     createParticles() {
-        const particleCount = 100;
-        for (let i = 0; i < particleCount; i++) {
+        const count = Math.floor(window.innerWidth * 0.1);
+        for (let i = 0; i < count; i++) {
             this.particles.push({
                 x: Math.random() * this.canvas.width,
                 y: Math.random() * this.canvas.height,
-                size: Math.random() * 3 + 1,
+                size: Math.random() * 2 + 1,
                 speedX: (Math.random() - 0.5) * 0.5,
-                speedY: (Math.random() - 0.5) * 0.5,
-                color: `rgba(99, 102, 241, ${Math.random()})`
+                speedY: (Math.random() - 0.5) * 0.5
             });
         }
     }
@@ -97,16 +97,14 @@ class ParticleSystem {
     animate() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.particles.forEach(particle => {
-            this.ctx.beginPath();
-            this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-            this.ctx.fillStyle = particle.color;
-            this.ctx.fill();
-
             particle.x += particle.speedX;
             particle.y += particle.speedY;
-
             if (particle.x < 0 || particle.x > this.canvas.width) particle.speedX *= -1;
             if (particle.y < 0 || particle.y > this.canvas.height) particle.speedY *= -1;
+            this.ctx.fillStyle = `rgba(99, 102, 241, ${particle.size/3})`;
+            this.ctx.beginPath();
+            this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+            this.ctx.fill();
         });
         requestAnimationFrame(() => this.animate());
     }
@@ -193,6 +191,15 @@ window.addEventListener('load', () => {
             document.querySelector(selector).classList.add('fade-in-up');
         }, index * 200);
     });
+
+    // 模拟加载进度
+    const loadingBar = document.querySelector('.loading-bar');
+    let width = 0;
+    const interval = setInterval(() => {
+        width += 10;
+        loadingBar.style.width = width + '%';
+        if (width >= 100) clearInterval(interval);
+    }, 50);
 });
 
 // 在 DOMContentLoaded 事件处理程序中添加
@@ -354,8 +361,21 @@ function initMouseFollow() {
 
     // 鼠标移动事件
     document.addEventListener('mousemove', (e) => {
-        cursor.style.left = `${e.clientX}px`;
-        cursor.style.top = `${e.clientY}px`;
+        const cursor = document.querySelector('.cursor');
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        
+        // 添加拖尾效果
+        for (let i = 0; i < 3; i++) {
+            setTimeout(() => {
+                const trail = document.createElement('div');
+                trail.className = 'cursor-trail';
+                trail.style.left = e.clientX + 'px';
+                trail.style.top = e.clientY + 'px';
+                document.body.appendChild(trail);
+                setTimeout(() => trail.remove(), 500);
+            }, i * 50);
+        }
     });
 }
 
@@ -428,4 +448,28 @@ function getProjectImages(index) {
         ['/Users/wenliang/Desktop/Portfolio/image/1740129098055.jpg']  // 项目名称03
     ];
     return projects[index] || [];
-} 
+}
+
+// 创建星空
+function createStars() {
+    const container = document.body;
+    for (let i = 0; i < 100; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.width = Math.random() * 3 + 'px';
+        star.style.height = star.style.width;
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDelay = Math.random() * 1.5 + 's';
+        container.appendChild(star);
+    }
+}
+
+// 视差滚动
+window.addEventListener('scroll', () => {
+    document.querySelectorAll('.parallax-element').forEach(el => {
+        const speed = parseFloat(el.dataset.speed) || 0.3;
+        const yPos = -(window.pageYOffset * speed);
+        el.style.transform = `translateY(${yPos}px)`;
+    });
+}); 
