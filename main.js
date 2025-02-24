@@ -404,6 +404,7 @@ function initModal() {
     const modalCloseBtn = document.querySelector('.modal-close-btn');
     const modalImages = document.querySelector('.modal-images');
     const viewDetailsBtns = document.querySelectorAll('.view-details-btn');
+    console.log("3333");
 
     // 打开弹窗
     viewDetailsBtns.forEach((btn, index) => {
