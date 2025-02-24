@@ -1,14 +1,18 @@
 // vercel.json 需要配置
 {
-  "rewrites": [
-      { "source": "/(.*)", "destination": "/index.html" }
-  ],
-  "headers": [
+  "routes": [
       {
-          "source": "/image/(.*)",
-          "headers": [
-              { "key": "Cache-Control", "value": "public, max-age=31536000" }
-          ]
+          "src": "/image/(.*)",
+          "dest": "/image/$1",
+          "headers": {
+              "Cache-Control": "public, max-age=31536000",
+              "Access-Control-Allow-Origin": "*"
+          }
+      },
+      {
+          "src": "/(.*)",
+          "dest": "/index.html",
+          "status": 200
       }
   ]
 }

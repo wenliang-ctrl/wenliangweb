@@ -404,13 +404,10 @@ function initModal() {
     const modalCloseBtn = document.querySelector('.modal-close-btn');
     const modalImages = document.querySelector('.modal-images');
     const viewDetailsBtns = document.querySelectorAll('.view-details-btn');
-    console.log("3333");
 
     // 打开弹窗
     viewDetailsBtns.forEach((btn, index) => {
-        console.log("111111");
         btn.addEventListener('click', () => {
-            console.log("22222");
             // 清空之前的图片
             modalImages.innerHTML = '';
 
@@ -422,6 +419,7 @@ function initModal() {
                 modalImages.appendChild(img);
                 console.log("地址为：==》"+src);
             });
+            
 
             // 显示弹窗
             modalOverlay.classList.remove('hidden');
@@ -447,10 +445,11 @@ function initModal() {
 // 获取项目图片（本地路径）
 function getProjectImages(index) {
     const projects = [
-        ['image/1740128363121.jpg'], // 改为相对路径
-        ['image/1740129056259.jpg'],
-        ['image/1740129098055.jpg']
+        ['/image/1740128363121.jpg'], // 保持绝对路径
+        ['/image/1740129056259.jpg'],
+        ['/image/1740129098055.jpg']
     ];
+
     return projects[index] || [];
 }
 
