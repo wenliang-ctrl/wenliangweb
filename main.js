@@ -475,7 +475,7 @@ function createStars() {
 // 视差滚动
 window.addEventListener('scroll', () => {
     document.querySelectorAll('.parallax-element').forEach(el => {
-        const speed = parseFloat(el.dataset.speed) || 0.3;
+        const speed = parseFloat(el.dataset.speed) || 0.2;
         const yPos = -(window.pageYOffset * speed);
         el.style.transform = `translateY(${yPos}px)`;
     });
