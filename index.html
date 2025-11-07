@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>温暖话语弹窗</title>
+    <title>冬天的第一份礼物-陈晨收</title>
     <style>
         body, html {
             margin: 0;
@@ -25,6 +25,58 @@
             justify-content: center;
             text-align: center;
             word-wrap: break-word;
+        }
+        
+        /* 初始弹窗样式 */
+        .initial-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #FFF0F5;
+            border: 3px solid #FF69B4;
+            border-radius: 15px;
+            padding: 30px;
+            width: 300px;
+            max-width: 90vw;
+            text-align: center;
+            z-index: 2000;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        .initial-modal h2 {
+            color: #FF69B4;
+            margin-bottom: 20px;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .initial-modal p {
+            color: #333;
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .accept-btn {
+            background-color: #FF69B4;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .accept-btn:hover {
+            background-color: #FF1493;
+            transform: scale(1.05);
+        }
+        
+        .accept-btn:active {
+            transform: scale(0.95);
         }
         
         /* 动画效果 */
@@ -123,46 +175,39 @@
             ['#F0FFF0', '#2E8B57'],  // 蜂蜜露 + 海洋绿
         ];
         
-        // 温暖话语
-        const tips = [
-            "每一个清晨，都是新的开始。",
-            "愿你每天都能找到生活中的小确幸。",
-            "阳光总在风雨后，请相信美好即将来临。",
-            "无论走到哪里，都不要忘记欣赏沿途的风景。",
-            "有时候，停下脚步是为了更好地前行。",
-            "勇敢地去追寻你的梦想吧，它就在不远处等你。",
-            "每一步都算数，在成为更好自己的路上。",
-            "内心充满爱的人，能看到生活中更多的美。",
-            "记住那些让你微笑的理由，它们是你的力量。",
-            "生活是一场旅行，重要的是享受旅程本身。",
-            "愿你永远保有一颗探索世界的好奇心。",
-            "即使前路漫漫，也不要忘了偶尔停下来赏花。",
-            "每个不曾起舞的日子，都是对生命的辜负。",
-            "用心感受每一次心跳，那是生命的声音。",
-            "保持初心，不忘初心，方得始终。",
-            "向着光亮那方，一步一步前进。",
-            "不管前方有多少未知，勇敢迈向未来。",
-            "在寻找答案的路上，你会发现更多的问题和乐趣。",
-            "用爱填满心灵，你会发现周围的世界也随之改变。",
-            "每一天都是独一无二的画卷，只待你来描绘。",
-            "相信自己，你是这世上无可替代的存在。",
-            "让温暖和善意成为你生活的主色调。",
-            "当你感到迷茫时，记得回头看看走过的路。",
-            "珍惜那些陪伴你走过风雨的朋友。",
-            "在这瞬息万变的世界里，找到属于自己的不变。",
-            "愿你拥有足够的勇气，去拥抱所有的可能。",
-            "不论何时何地，都要保持一颗乐观向上的心。",
-            "发现身边的美好，哪怕是微不足道的小事。",
-            "带着感恩的心面对每一天，你会收获更多惊喜。",
-            "在这个快节奏的世界里，别忘了慢下来倾听内心的声音。",
-            "把生活过成一首诗，优雅而从容。",
-            "无论遇到什么困难，都请坚持下去。",
-            "给自己一个大大的微笑，因为你真的很棒。",
-            "用积极的态度迎接挑战，你会发现不一样的自己。",
-            "与人为善，不仅温暖他人，也照亮了自己的道路。",
-            "保持对生活的热爱，因为它是最好的老师。",
-            "在平凡的日子里，也能找到非凡的意义。",
-        ];
+     // 温暖话语集合 - 给那个特别的人
+const tips = [
+    "愿你每天都能找到生活中的小确幸。",
+    "相信自己，你是这世上无可替代的存在。",
+    "别熬夜，早点休息。",
+    "天冷了，记得添衣，替我照顾好自己。",
+    "如果累了，就停下来歇一歇，我在这里。",
+    "今天有好好吃饭吗？",
+    "听到一个笑话，第一时间就想分享给你。",
+    "这个冬天，因为想到你，感觉也没那么冷了。",
+    "我发现在人群中，总能一眼就看到你。",
+    "和你聊天，是我一天里最放松的时刻。",
+    "最近听到一首歌，歌词里写的好像你。",
+    "看到好看的晚霞，第一反应是拍给你看。",
+    "你就像我的小太阳，看到你就觉得暖洋洋的。",
+    "不知道我有没有资格，申请做你的暖手宝？",
+    "有任何需要，我随时都在。",
+    "你笑起来的样子，真的很好看。",
+    "在我眼里，你一直在发光哦。",
+    "勇敢去做吧，我会是你最坚实的后盾。",
+    "你认真做事的样子，特别有魅力。",
+    "希望今年冬天，能和你一起看第一场雪。",
+    "立冬了，适合把一年里所有美好的事，和你一起复盘。",
+    "听说冬天是储存浪漫的季节，那我要存起来留给你。",
+    "想和你一起吃热乎乎的火锅，感受升腾的烟火气。",
+    "秋天适合想念，冬天适合见面。我们……什么时候见面？",
+    "我的未来计划里，好像多了一个你。",
+    "期待下一次见面",
+    "我想你了",
+    "想你想你想你",
+    "别太累了，好好爱自己",
+    "祝你找工作顺利呀",
+];
         
         // 可选字体
         const availableFonts = [
@@ -330,8 +375,51 @@
             }, cumulativeDelay + 8000);
         }
         
-        // 启动程序：先显示爱心，再满屏弹窗
-        setTimeout(createHeartPopups, 1000);
+        // 创建初始弹窗
+        function createInitialModal() {
+            const modal = document.createElement('div');
+            modal.className = 'initial-modal';
+            
+            const title = document.createElement('h2');
+            title.textContent = '给陈晨的神秘礼物';
+            
+            const content = document.createElement('p');
+            content.textContent = '不好意思哦，有点迟了哦礼物虽迟但到！';
+            
+            const button = document.createElement('button');
+            button.className = 'accept-btn';
+            button.textContent = '接受礼物';
+            
+            button.addEventListener('click', function() {
+                // 移除初始弹窗
+                modal.style.opacity = '0';
+                modal.style.transform = 'translate(-50%, -50%) scale(0.9)';
+                modal.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                
+                setTimeout(() => {
+                    if (modal.parentNode) {
+                        document.body.removeChild(modal);
+                    }
+                    // 开始播放动画
+                    setTimeout(createHeartPopups, 1000);
+                }, 500);
+            });
+            
+            modal.appendChild(title);
+            modal.appendChild(content);
+            modal.appendChild(button);
+            document.body.appendChild(modal);
+            
+            // 添加淡入动画
+            setTimeout(() => {
+                modal.style.opacity = '1';
+                modal.style.transform = 'translate(-50%, -50%)';
+                modal.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            }, 10);
+        }
+        
+        // 启动程序：先显示初始弹窗
+        window.addEventListener('DOMContentLoaded', createInitialModal);
     </script>
 </body>
 </html>
